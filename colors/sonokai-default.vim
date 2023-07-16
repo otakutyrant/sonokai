@@ -7,7 +7,7 @@
 " -----------------------------------------------------------------------------
 
 " Initialization: {{{
-let basename = expand("%:r") " Like sonokai-default.
+let basename = expand("%:t:r") " Like sonokai-default.
 let palette_name = split(basename, "-")[1] " Like default.
 
 let s:configuration = sonokai#get_configuration()
