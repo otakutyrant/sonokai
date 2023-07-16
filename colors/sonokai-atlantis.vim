@@ -7,20 +7,23 @@
 " -----------------------------------------------------------------------------
 
 " Initialization: {{{
+let basename = expand("%:r") " Like sonokai-default.
+let palette_name = split(basename, "-")[1] " Like default.
+
 let s:configuration = sonokai#get_configuration()
-let s:palette = sonokai#get_palette('atlantis', s:configuration.colors_override)
+let s:palette = sonokai#get_palette(palette_name, s:configuration.colors_override)
 let s:path = expand('<sfile>:p') " the path of this script
 let s:last_modified = 'Mon Apr 24 19:33:44 UTC 2023'
 let g:sonokai_loaded_file_types = []
 
-if !(exists('g:colors_name') && g:colors_name ==# 'sonokai-atlantis' && s:configuration.better_performance)
+if !(exists('g:colors_name') && g:colors_name ==# basename && s:configuration.better_performance)
   highlight clear
   if exists('syntax_on')
     syntax reset
   endif
 endif
 
-let g:colors_name = 'sonokai-atlantis'
+let g:colors_name = basename
 
 if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 256
   finish
